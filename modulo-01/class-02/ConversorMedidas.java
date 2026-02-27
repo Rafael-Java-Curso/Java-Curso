@@ -19,6 +19,7 @@ public class ConversorMedidas{
         x = r.nextDouble();
         double fahrenheit = x * 1.8 + FACTOR_CELSIUS_FAHRENHEIT;
         System.out.printf("%.1f Grados Celcius a Grados Fahrenheit = %.1f  grados fahrenheit%n", x, fahrenheit);
+        
     }
 
 }

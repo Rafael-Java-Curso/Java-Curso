@@ -42,7 +42,12 @@ public class Bucles {
                     break;
 
                 case 2:
-
+                        System.out.println("Ingresa año de nacimiento: ");
+                        int anhoNacimiento = r.nextInt();
+                        System.out.println("Año futuro : ");
+                        int anhioFuturo = r.nextInt();
+                        int edadFutura = anhioFuturo - anhoNacimiento;
+                        System.out.printf("En el año %d tendras %d años %n", anhioFuturo, edadFutura);
                     break;
                 
                 case 3:
@@ -59,14 +64,15 @@ public class Bucles {
                         }
                     }
                     if(ok){
-                        System.out.printf("el numero %d es primo", selectNumber);
+                        System.out.printf("el numero %d es primo %n", selectNumber);
                     }else{
-                        System.out.printf("El numero %d no es primo", selectNumber);
+                        System.out.printf("El numero %d no es primo %n", selectNumber);
                     }
                     
                     break;
                 
                 case 4:
+                    System.out.println("Saliendo...");
 
                     break;
                 

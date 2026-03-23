@@ -29,18 +29,26 @@ public class Main{
             return this.cantidadPartidasGanadas;
         }
 
-        public void mostrarDatos(){
-            System.out.printf("Nombre Usuario = %s %nJuego Favorito = %s %nCantidad Partidas Ganadas = %d %n", this.nombreUsuario, this.juegoFavorito, this.cantidadPartidasGanadas);
+        public void setCantidadPartidasGanadas(int cantidadPartidasGanadas){
+            if(cantidadPartidasGanadas >= this.cantidadPartidasGanadas){
+                this.cantidadPartidasGanadas = cantidadPartidasGanadas;
+            }else{
+                System.err.println("Dato ingresado no valido, no puede establecer menor partidas ganas de las que tiene ya ganadas");
+            }
         }
 
 
+        public void mostrarDatos(){
+            System.out.printf("Nombre Usuario = %s %nJuego Favorito = %s %nCantidad Partidas Ganadas = %d %n", this.nombreUsuario, this.juegoFavorito, this.cantidadPartidasGanadas);
+        }
 
     }
 
     public static void main(String[] args){
 
         for(int i = 1; i <= 3; i++){
-            Perfil p = new Perfil("Usuario" + i, "Juego " + i, i);
+            Perfil p = new Perfil("Usuario" + i, "Juego " + i, 0);
+            p.setCantidadPartidasGanadas(i);
             p.mostrarDatos();
             System.err.println("=========");
         }

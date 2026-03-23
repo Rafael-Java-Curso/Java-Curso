@@ -39,7 +39,7 @@ public class Main{
             String titulo = "Libro " + i, autor = "Autor " + i, isbn = "ISBN " + i;
             double precio = 23.000 * (i * 1.0);
             Libro librox = new Libro(titulo, autor, isbn, precio);
-            System.out.printf("Nombre Libro : %s %n Precio Libro : %.3f %n ISBN Libro : %s %nAutor Libro : %s", librox.getTitulo(), librox.getPrecio(), librox.getIsbn(), librox.getAutor());
+            System.out.printf("Nombre Libro : %s %n Precio Libro : %.3f %n ISBN Libro : %s %nAutor Libro : %s %n", librox.getTitulo(), librox.getPrecio(), librox.getIsbn(), librox.getAutor());
             System.out.println("= = = = = = = = = = = = ");
         }
 

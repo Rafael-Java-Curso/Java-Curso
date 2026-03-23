@@ -31,11 +31,15 @@ public class Main{
         }
 
         void setPrecio(double precio){
-            if(precio >= 0){
+            if(precio > 0){
                 this.precio = precio;
             }else{
-                System.out.printf("%.3f No es un precio valido. Valor establecido = 0 %n", precio);
+                System.out.printf("%.3f No es un precio valido.%n", precio);
             }
+        }
+
+        public void mostrarInformacion(){
+            System.out.printf("Nombre Libro : %s %n Precio Libro : %.3f %n ISBN Libro : %s %nAutor Libro : %s %n", this.titulo, this.precio, this.isbn, this.autor);
         }
 
     }
@@ -47,7 +51,7 @@ public class Main{
             String titulo = "Libro " + i, autor = "Autor " + i, isbn = "ISBN " + i;
             double precio = 23.000 * (i * 1.0);
             Libro librox = new Libro(titulo, autor, isbn, precio);
-            System.out.printf("Nombre Libro : %s %n Precio Libro : %.3f %n ISBN Libro : %s %nAutor Libro : %s %n", librox.getTitulo(), librox.getPrecio(), librox.getIsbn(), librox.getAutor());
+            librox.mostrarInformacion();
             System.out.println("= = = = = = = = = = = = ");
         }
 

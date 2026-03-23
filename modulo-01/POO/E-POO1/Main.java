@@ -30,6 +30,14 @@ public class Main{
             return this.precio;
         }
 
+        void setPrecio(double precio){
+            if(precio >= 0){
+                this.precio = precio;
+            }else{
+                System.out.printf("%.3f No es un precio valido. Valor establecido = 0 %n", precio);
+            }
+        }
+
     }
 
 

@@ -1,95 +1,103 @@
+import java.util.*;
+
 public class Main{
+    public static class Usuario{
+        private String nombreUsuario;
+        private int edadUsuario;
+        private String correoUsuario;
 
-    public static class Duracion{
-        private int horas, minutos, segundos;
-        
-        public Duracion(int horas, int minutos, int segundos){
-            this.horas = horas;
-            this.minutos = minutos;
-            this.segundos = segundos;
+        public Usuario(String nombreUsuario, int edadUsuario, String correoUsuario){
+            this.nombreUsuario = nombreUsuario;
+            this.edadUsuario = edadUsuario;
+            this.correoUsuario = correoUsuario;
         }
 
-        public int getHoras(){
-            return this.horas;
-        }
-
-        public int getMinutos(){
-            return this.minutos;
-        }
-        
-        public int getSegundos(){
-            return this.segundos;
-        }
-
-        public void mostrarDuracion(){
-            System.out.printf("%d:%d:%d %n", getHoras(), getMinutos(), getSegundos());
-        }   
-
+        public String getNombreUsuario(){return this.nombreUsuario;}
+        public int getEdadUsuario(){return this.edadUsuario;}
+        public String getCorreoUsuario(){return this.correoUsuario;}
     }
 
-    public static class Video{
-        private String titulo, canal;
-        private Duracion duracion;
-        private int cantidadLikes;
-        private int cantidadVisualizaciones;
+    public static class Comentario{
+        private Usuario usuario;
+        private String texto;
 
-        public Video(){
-            this.titulo = "NaN";
-            this.canal = "NaN";
-            Duracion x = new Duracion(0 , 0, 0);
-            this.duracion = x;
-            this.cantidadVisualizaciones = 0;
+        public Comentario(Usuario usuario, String texto){
+            this.usuario = usuario;
+            this.texto = texto;
         }
 
-        public Video(String titulo, String canal, Duracion duracion, int cantidadLikes, int cantidadVisualizaciones){
-            this.titulo = titulo;
-            this.canal = canal;
-            this.duracion = duracion;
-            this.cantidadLikes = cantidadLikes;
-            this.cantidadVisualizaciones = cantidadVisualizaciones;
+        public Usuario getUsuario(){return this.usuario;}
+        public String getTexto(){return this.texto;}
+    }
+
+    public static class Post{
+        private Usuario usuario;
+        private String contenido;
+        private int likes;
+        private List<Comentario> comentarios = new ArrayList<Comentario>();
+
+        public Post(Usuario usuario, String contenido, int likes){
+            this.usuario = usuario;
+            this.contenido = contenido;
+            this.likes = likes;
         }
 
-        public void setCantidadLikes(int cantidadLikes){
-            this.cantidadLikes = cantidadLikes;
-        }
-
-        public void setCantidadDeVisualizaciones(int cantidad){
-            if(cantidadVisualizaciones > 0){
-                this.cantidadVisualizaciones = cantidad;
+        public void mostrarComentarios(){
+            if(comentarios.size() > 0){
+                for(int i = 0; i < comentarios.size(); i++){
+                    Comentario x = comentarios.get(i);
+                    System.out.printf("Usuario : %s Comentario: %s %n", x.getUsuario().getNombreUsuario(), x.getTexto());
+                }
             }else{
-                System.out.println("Cantidad de visualizaciones debe ser entero positivo");
+                System.out.println("No hay comentarios en este post");
             }
+
         }
 
-        public int getCantidadLikes(){return this.cantidadLikes;}
-        public int getCantidadVisualizaciones(){return this.cantidadVisualizaciones;}
-        public Duracion getDuracion(){return this.duracion;}
-        public String getTitulo(){return this.titulo;}
-        public String getCanal(){return this.canal;}
-
-        public void mostrarVideo(){
-            System.out.printf("Titulo : %s %nCanal : %s %nCantidad Likes : %d %nCantidad Visualizaciones : %d %n", getTitulo(), getCanal(), getCantidadLikes(), getCantidadVisualizaciones());
-            System.out.print("Duracion : ");
-            Duracion x = getDuracion();
-            x.mostrarDuracion();
+        public void agregarComentarios(Comentario c){
+            comentarios.add(c);
         }
 
+        public void incrementarLikes(){
+            this.likes++;
+        }
+
+        public void mostrarPost(){
+            System.out.println("Datos Post");
+            System.out.printf("Autor Post : %s %nCorreo Autor : %s %nLikes : %d  %nContenido : %s %n", getUsuario().getNombreUsuario(), getUsuario().getCorreoUsuario(), getLikes(), getContenido());
+            System.out.println("Comentarios Post");
+            mostrarComentarios();
+        }
+
+
+        public String getContenido(){return this.contenido;}
+        public Usuario getUsuario(){return this.usuario;}
+        public int getLikes(){return this.likes;}
 
     }
 
     public static void main(String[] args){
-        Duracion duracion1 = new Duracion(1, 20, 12);
-        Duracion duracion2 = new Duracion(0, 0, 59);
+        Usuario usuario1 = new Usuario("Rafael", 99, "rafael@gmail.com");
+        Usuario usuario2 = new Usuario("Alejandro", 99, "alejandro@gmail.com");
+        Usuario usuario3 = new Usuario("Sebastian", 99, "sebastian@gmail.com");
 
-        Video video1 = new Video("Como instalar VS", "Tutos 3000", duracion1, 1257, 1533434);
-        Video video2 = new Video("Git hub ", "Todo git", duracion2, 34257, 133434);
+        Post post1 = new Post(usuario1, "Hola esto es un post de prueba.... Nuevo Post.... Opiniones...", 0);
+        post1.mostrarPost();
 
-        video1.mostrarVideo();
-        System.out.println("= = = = = = = = ");
-        video2.mostrarVideo();
+        System.out.println("== == == == == == == == == == == == == == == ==");
 
+        Comentario c1 = new Comentario(usuario2, "Excelente post");
+        Comentario c2 = new  Comentario(usuario3, "Esperando otro post");
+
+        post1.agregarComentarios(c1);
+        post1.agregarComentarios(c2);
+        for(int i = 0; i < 5; i++){
+            post1.incrementarLikes();
+        }
+
+        post1.mostrarPost();
+        
 
 
     }
-
 }

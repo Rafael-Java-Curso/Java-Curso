@@ -1,62 +1,47 @@
 public class Main{
 
-    public static class Usuario{
-        private String nombre;
-        private int edad;
-        private String ciudad;
-        private int cantidadSeguidores;
+    public static class Cancion{
+        private String titulo;
+        private String artista;
+        private int duracionSegundos;
+        private int numeroReproduccioens;
+        private boolean esExplicita;
+
+        public Cancion(){
+            this.titulo = "NaN";
+            this.artista = "NaN";
+            this.duracionSegundos = 0;
+            this.numeroReproduccioens = 0;
+            this.esExplicita = false;
+        }
+
+        public Cancion(String titulo, String artista, int duracionSegundos, int numeroReproduccioens, boolean esExplicita){
+            this.titulo = titulo;
+            this.artista = artista;
+            this.duracionSegundos = duracionSegundos;
+            this.numeroReproduccioens = numeroReproduccioens;
+            this.esExplicita = esExplicita;
+        }
+
+        public String getTitulo(){return this.titulo;}
+        public String getArtista(){return this.artista;}
+        public int getDuracionSegundos(){return this.duracionSegundos;}
+        public String getEsExplicita(){ return (this.esExplicita) ? "Si" : "No";}
+        public int getNumeroReproducciones(){return this.numeroReproduccioens;}
+
+        public void mostrarCancion(){
+            System.out.printf("Titulo : %s %nArtista : %s %nDuracion Seg : %d %n Es Explicita : %s %nReproducciones : %d %n", getTitulo(), getArtista(), getDuracionSegundos(), getEsExplicita(), getNumeroReproducciones());
+        }
         
-        public Usuario(){
-            this.nombre = "NaN";
-            this.edad = 0;
-            this.ciudad = "NaN";
-            this.cantidadSeguidores = 0;
-        }
-
-        public Usuario(String nombre, int edad, String ciudad, int cantidadSeguidores){
-            this.nombre = nombre;
-            this.edad = edad;
-            this.ciudad = ciudad;
-            this.cantidadSeguidores = cantidadSeguidores;
-        }
-
-        public String getNombre(){
-            return this.nombre;
-        }
-
-        public String getCiudad(){
-            return this.ciudad;
-        }
-
-        public int getEdad(){
-            return this.edad;
-        }
-        
-        public int getCantidadSeguidores(){
-            return this.cantidadSeguidores;
-        }
-
-        public void setCantidadSeguidores(int cantidad){
-            if(cantidad >= 0){
-                this.cantidadSeguidores = cantidad;
-            }else{
-                System.err.println("Valor de seguidores incorrecto. Debe ser un entero positivo");
-            }
-        }
-
-        public void mostrarUsuario(){
-            System.out.printf("Usuario : %s %nEdad : %d %nCiudad : %s %nCantidad Seguidores : %d %n",this.nombre, this.edad, this.ciudad, this.cantidadSeguidores);
-        }
 
     }
 
-
     public static void main(String[] args){
-        for(int i = 1; i <= 3; i++){
-            Usuario u = new Usuario("usuario " + i, 20 + i, "Ciudad " + i, 0);
-            u.setCantidadSeguidores(i + 10);
-            u.mostrarUsuario();
-            System.out.println("= = = = = = = = = = = ");
+        for(int i = 1; i <= 4; i++){
+            boolean esExplicita = (i % 2 == 0) ? true : false;
+            Cancion c = new Cancion("Titulo " + i, "Artista " + i, 120 + i, 111 + i, esExplicita);
+            c.mostrarCancion();
+            System.out.println(" = = = = = = = = = = = = = = = = =");
         }
     }
 

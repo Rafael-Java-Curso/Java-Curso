@@ -1,58 +1,56 @@
-
 public class Main{
 
-    public static class Libro{
-        private String titulo;
-        private String autor;
-        private String isbn;
-        private double precio;
+    public static class Perfil{
+        private String nombreUsuario;
+        private String juegoFavorito;
+        private int cantidadPartidasGanadas;
 
-        public Libro(String titulo, String autor, String isbn, double precio){
-            this.titulo = titulo;
-            this.autor = autor;
-            this.isbn = isbn;
-            this.precio = precio;
+        public Perfil(){
+            this.nombreUsuario = "NaN";
+            this.juegoFavorito = "NaN";
+            this.cantidadPartidasGanadas = 0;
         }
 
-        String getTitulo(){
-            return this.titulo;
+        public Perfil(String nombreUsuario, String juegoFavorito, int cantidadPartidasGanadas){
+            this.nombreUsuario = nombreUsuario;
+            this.juegoFavorito = juegoFavorito;
+            this.cantidadPartidasGanadas = cantidadPartidasGanadas;
         }
 
-        String getAutor(){
-            return this.autor;
+        public String getNombreUsuario(){
+            return this.nombreUsuario;
         }
 
-        String getIsbn(){
-            return this.isbn;
-        }
-        
-        double getPrecio(){
-            return this.precio;
+        public String getJuegoFavorito(){
+            return this.juegoFavorito;
         }
 
-        void setPrecio(double precio){
-            if(precio > 0){
-                this.precio = precio;
+        public int getCantidadPartidasGanadas(){
+            return this.cantidadPartidasGanadas;
+        }
+
+        public void setCantidadPartidasGanadas(int cantidadPartidasGanadas){
+            if(cantidadPartidasGanadas >= this.cantidadPartidasGanadas){
+                this.cantidadPartidasGanadas = cantidadPartidasGanadas;
             }else{
-                System.out.printf("%.3f No es un precio valido.%n", precio);
+                System.err.println("Dato ingresado no valido, no puede establecer menor partidas ganas de las que tiene ya ganadas");
             }
         }
 
-        public void mostrarInformacion(){
-            System.out.printf("Nombre Libro : %s %n Precio Libro : %.3f %n ISBN Libro : %s %nAutor Libro : %s %n", this.titulo, this.precio, this.isbn, this.autor);
+
+        public void mostrarDatos(){
+            System.out.printf("Nombre Usuario = %s %nJuego Favorito = %s %nCantidad Partidas Ganadas = %d %n", this.nombreUsuario, this.juegoFavorito, this.cantidadPartidasGanadas);
         }
 
     }
 
-
     public static void main(String[] args){
 
         for(int i = 1; i <= 3; i++){
-            String titulo = "Libro " + i, autor = "Autor " + i, isbn = "ISBN " + i;
-            double precio = 23.000 * (i * 1.0);
-            Libro librox = new Libro(titulo, autor, isbn, precio);
-            librox.mostrarInformacion();
-            System.out.println("= = = = = = = = = = = = ");
+            Perfil p = new Perfil("Usuario" + i, "Juego " + i, 0);
+            p.setCantidadPartidasGanadas(i);
+            p.mostrarDatos();
+            System.err.println("=========");
         }
 
     }

@@ -1,48 +1,95 @@
 public class Main{
 
-    public static class Cancion{
-        private String titulo;
-        private String artista;
-        private int duracionSegundos;
-        private int numeroReproduccioens;
-        private boolean esExplicita;
-
-        public Cancion(){
-            this.titulo = "NaN";
-            this.artista = "NaN";
-            this.duracionSegundos = 0;
-            this.numeroReproduccioens = 0;
-            this.esExplicita = false;
+    public static class Duracion{
+        private int horas, minutos, segundos;
+        
+        public Duracion(int horas, int minutos, int segundos){
+            this.horas = horas;
+            this.minutos = minutos;
+            this.segundos = segundos;
         }
 
-        public Cancion(String titulo, String artista, int duracionSegundos, int numeroReproduccioens, boolean esExplicita){
-            this.titulo = titulo;
-            this.artista = artista;
-            this.duracionSegundos = duracionSegundos;
-            this.numeroReproduccioens = numeroReproduccioens;
-            this.esExplicita = esExplicita;
+        public int getHoras(){
+            return this.horas;
         }
 
-        public String getTitulo(){return this.titulo;}
-        public String getArtista(){return this.artista;}
-        public int getDuracionSegundos(){return this.duracionSegundos;}
-        public String getEsExplicita(){ return (this.esExplicita) ? "Si" : "No";}
-        public int getNumeroReproducciones(){return this.numeroReproduccioens;}
-
-        public void mostrarCancion(){
-            System.out.printf("Titulo : %s %nArtista : %s %nDuracion Seg : %d %n Es Explicita : %s %nReproducciones : %d %n", getTitulo(), getArtista(), getDuracionSegundos(), getEsExplicita(), getNumeroReproducciones());
+        public int getMinutos(){
+            return this.minutos;
         }
         
+        public int getSegundos(){
+            return this.segundos;
+        }
+
+        public void mostrarDuracion(){
+            System.out.printf("%d:%d:%d %n", getHoras(), getMinutos(), getSegundos());
+        }   
+
+    }
+
+    public static class Video{
+        private String titulo, canal;
+        private Duracion duracion;
+        private int cantidadLikes;
+        private int cantidadVisualizaciones;
+
+        public Video(){
+            this.titulo = "NaN";
+            this.canal = "NaN";
+            Duracion x = new Duracion(0 , 0, 0);
+            this.duracion = x;
+            this.cantidadVisualizaciones = 0;
+        }
+
+        public Video(String titulo, String canal, Duracion duracion, int cantidadLikes, int cantidadVisualizaciones){
+            this.titulo = titulo;
+            this.canal = canal;
+            this.duracion = duracion;
+            this.cantidadLikes = cantidadLikes;
+            this.cantidadVisualizaciones = cantidadVisualizaciones;
+        }
+
+        public void setCantidadLikes(int cantidadLikes){
+            this.cantidadLikes = cantidadLikes;
+        }
+
+        public void setCantidadDeVisualizaciones(int cantidad){
+            if(cantidadVisualizaciones > 0){
+                this.cantidadVisualizaciones = cantidad;
+            }else{
+                System.out.println("Cantidad de visualizaciones debe ser entero positivo");
+            }
+        }
+
+        public int getCantidadLikes(){return this.cantidadLikes;}
+        public int getCantidadVisualizaciones(){return this.cantidadVisualizaciones;}
+        public Duracion getDuracion(){return this.duracion;}
+        public String getTitulo(){return this.titulo;}
+        public String getCanal(){return this.canal;}
+
+        public void mostrarVideo(){
+            System.out.printf("Titulo : %s %nCanal : %s %nCantidad Likes : %d %nCantidad Visualizaciones : %d %n", getTitulo(), getCanal(), getCantidadLikes(), getCantidadVisualizaciones());
+            System.out.print("Duracion : ");
+            Duracion x = getDuracion();
+            x.mostrarDuracion();
+        }
+
 
     }
 
     public static void main(String[] args){
-        for(int i = 1; i <= 4; i++){
-            boolean esExplicita = (i % 2 == 0) ? true : false;
-            Cancion c = new Cancion("Titulo " + i, "Artista " + i, 120 + i, 111 + i, esExplicita);
-            c.mostrarCancion();
-            System.out.println(" = = = = = = = = = = = = = = = = =");
-        }
+        Duracion duracion1 = new Duracion(1, 20, 12);
+        Duracion duracion2 = new Duracion(0, 0, 59);
+
+        Video video1 = new Video("Como instalar VS", "Tutos 3000", duracion1, 1257, 1533434);
+        Video video2 = new Video("Git hub ", "Todo git", duracion2, 34257, 133434);
+
+        video1.mostrarVideo();
+        System.out.println("= = = = = = = = ");
+        video2.mostrarVideo();
+
+
+
     }
 
 }
